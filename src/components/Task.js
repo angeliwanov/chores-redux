@@ -4,6 +4,7 @@ import { Flex } from '@twilio-paste/flex';
 import { Label } from '@twilio-paste/label';
 import { useDispatch, useSelector } from 'react-redux';
 import { SelectHuman } from './SelectHuman';
+import { toggleTask } from '../store/tasksSlice';
 
 export const Task = ({ taskId }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,9 @@ export const Task = ({ taskId }) => {
         <Checkbox
           id={`task-${taskId}`}
           checked={task.complete}
-          onChange={(event) => dispatch({ type: 'IMPLEMENT_ME' })}
+          onChange={(event) =>
+            dispatch(toggleTask(taskId, event.target.checked))
+          }
         />
         <Label htmlFor={`task-${taskId}`}>{task.title}</Label>
       </Flex>
